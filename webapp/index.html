@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="css/main.css"/>
+    <script src="js/libs/jquery.js"></script>
+    <script src="js/libs/underscore.js"></script>
+    <script src="js/libs/backbone.js"></script>
+    <script src="js/libs/ractive.js"></script>
+    <script src="js/libs/ractive-adaptors-backbone.js"></script>
+
+    <script src="js/views/layout.js"></script>
+    <script src="js/tools/config.js"></script>
+    <script src="js/views/desktop.js"></script>
+    <script src="js/views/desktops.js"></script>
+    <script src="js/views/widgets.js"></script>
+    <script src="js/views/login.js"></script>
+    <script src="js/router.js"></script>
+    <script src="js/index.js"></script>
+    <title>Siemens</title>
+</head>
+<body>
+<script id="layout" type="text/template">
+    <header id="header" class="clearfix small-12">
+        <div class="small-3 columns brand_sim">
+            <a href="#">Siemens</a>
+        </div>
+        <div class="small-6 columns menu-app_sim">
+            <ul style="margin-top: 12px;">
+                <li class="item-menu_sim">
+                    <a id="desktops" href="#desktops" class="icon desktop-plus-icon_sim"></a>
+                </li>
+                <li class="item-menu_sim">
+                    <a id="widgets" href="#widgets" class="icon menu-widgets-icon_sim"></a>
+                </li>
+                <li class="item-menu_sim">
+                    <a id="notifications" class="icon notifications-icon_sim"></a>
+                </li>
+                <li class="item-menu_sim">
+                    <a id="messages" class="icon messages-icon_sim"></a>
+                </li>
+            </ul>
+        </div>
+        <div class="small-3 columns menu-account_sim"></div>
+    </header>
+    <section id="section">
+        <div class="inner-content">
+
+        </div>
+    </section>
+    <footer id="footer">
+
+    </footer>
+</script>
+<script id="desktop" type="text/template">
+    <div class="desktop-list">
+        <div class="add-panel">
+            <a href="#desktops" class="expanded button">Add desktop</a>
+        </div>
+        <div class="desktop-list-inner">
+
+            {{#user.desktop:i}}
+                {{#if current}}
+                <div id="panelSim-{{i}}" class="item-desktop show">
+
+                </div>
+                {{else}}
+                <div id="panelSim-{{i}}" class="item-desktop hide">
+
+                </div>
+                {{/if}}
+            {{/user.desktop}}
+        </div>
+        <ul class="pagination small-centered" role="navigation" aria-label="Pagination">
+            {{#user.desktop:i}}
+            {{#if current}}
+            <li class="current"><span class="show-for-sr">You're on page</span> {{i+1}}</li>
+            {{else}}
+            <li><a on-click="choose:{{i}}" href="#" aria-label="Page 2">{{i+1}}</a></li>
+            {{/if}}
+            {{/user.desktop}}
+        </ul>
+    </div>
+</script>
+<script id="desktops" type="text/template">
+    <div class="list">
+        {{#listDesktops:i}}
+        <div class="wrap-template-item">
+            <div id="desktopItem-{{i}}" class="template-item">
+
+            </div>
+            <div class="hover-clicker" on-click="addDesktop:{{i}}">+</div>
+        </div>
+        {{else}}
+
+        {{/listDesktops}}
+    </div>
+</script>
+<script id="widgets" type="text/template">
+    <div class="list">
+        {{#listWidgets:i}}
+        <div class="wrap-widget-item">
+            <div id="widgetItem-{{i}}" class="widget-item">
+                <img src="{{source}}">
+            </div>
+            <div class="hover-clicker" on-click="addDesktop:{{i}}">+</div>
+        </div>
+        {{else}}
+
+        {{/listWidgets}}
+    </div>
+</script>
+<script id="template1" type="text/template">
+    <div class="clearfix">
+        <div class="small-6 columns one-row"><div class="wrapper-widget">
+            {{#widgets[0].source}}
+            <img src="{{widgets[0].source}}">
+            {{/widgets[0].source}}
+        </div></div>
+        <div class="small-6 columns one-row"><div class="wrapper-widget">
+            {{#widgets[1].source}}
+            <img src="{{widgets[1].source}}">
+            {{/widgets[1].source}}
+        </div></div>
+    </div>
+</script>
+<script id="template2" type="text/template">
+    <div class="clearfix">
+        <div class="small-6 columns">
+            <div class="small-12 two-row">
+                <div class="wrapper-widget">
+                    {{#widgets[0].source}}
+                    <img src="{{widgets[0].source}}">
+                    {{/widgets[0].source}}
+                </div>
+            </div>
+            <div class="small-12 two-row">
+                <div class="wrapper-widget">
+                    {{#widgets[1].source}}
+                    <img src="{{widgets[1].source}}">
+                    {{/widgets[1].source}}
+                </div>
+            </div>
+        </div>
+        <div class="small-6 columns">
+            <div class="small-12 three-row">
+                <div class="wrapper-widget">
+                    {{#widgets[2].source}}
+                    <img src="{{widgets[2].source}}">
+                    {{/widgets[2].source}}
+                </div>
+            </div>
+            <div class="small-12 three-row">
+                <div class="wrapper-widget">
+                    {{#widgets[3].source}}
+                    <img src="{{widgets[3].source}}">
+                    {{/widgets[3].source}}
+                </div>
+            </div>
+            <div class="small-12 three-row">
+                <div class="wrapper-widget">
+                    {{#widgets[4].source}}
+                    <img src="{{widgets[4].source}}">
+                    {{/widgets[4].source}}
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+<script id="template3" type="text/template">
+    <div class="clearfix">
+        <div class="small-6 columns one-row">
+            <div class="wrapper-widget">
+                {{#widgets[0].source}}
+                <img src="{{widgets[0].source}}">
+                {{/widgets[0].source}}
+            </div>
+        </div>
+        <div class="small-6 columns">
+            <div class="small-12 three-row">
+                <div class="wrapper-widget">
+                    {{#widgets[1].source}}
+                    <img src="{{widgets[1].source}}">
+                    {{/widgets[1].source}}
+                </div>
+            </div>
+            <div class="small-12 three-row">
+                <div class="wrapper-widget">
+                    {{#widgets[2].source}}
+                    <img src="{{widgets[2].source}}">
+                    {{/widgets[2].source}}
+                </div>
+            </div>
+            <div class="small-12 three-row">
+                <div class="wrapper-widget">
+                    {{#widgets[3].source}}
+                    <img src="{{widgets[3].source}}">
+                    {{/widgets[3].source}}
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+<script id="template4" type="text/template">
+    <div class="clearfix">
+        <div class="small-4 columns">
+            <div class="small-12 two-row">
+                <div class="wrapper-widget">
+                    {{#widgets[0].source}}
+                    <img src="{{widgets[0].source}}">
+                    {{/widgets[0].source}}
+                </div>
+            </div>
+            <div class="small-12 two-row">
+                <div class="wrapper-widget">
+                    {{#widgets[1].source}}
+                    <img src="{{widgets[1].source}}">
+                    {{/widgets[1].source}}
+                </div>
+            </div>
+        </div>
+        <div class="small-4 columns one-row">
+            <div class="wrapper-widget">
+                {{#widgets[2].source}}
+                <img src="{{widgets[2].source}}">
+                {{/widgets[2].source}}
+            </div>
+        </div>
+        <div class="small-4 columns">
+            <div class="small-12 three-row">
+                <div class="wrapper-widget">
+                    {{#widgets[3].source}}
+                    <img src="{{widgets[3].source}}">
+                    {{/widgets[3].source}}
+                </div>
+            </div>
+            <div class="small-12 three-row">
+                <div class="wrapper-widget">
+                    {{#widgets[4].source}}
+                    <img src="{{widgets[4].source}}">
+                    {{/widgets[4].source}}
+                </div>
+            </div>
+            <div class="small-12 three-row">
+                <div class="wrapper-widget">
+                    {{#widgets[5].source}}
+                    <img src="{{widgets[5].source}}">
+                    {{/widgets[5].source}}
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+<script id="template5" type="text/template">
+    <div>
+        template 5
+    </div>
+</script>
+<div class="layout-background_image_sim"></div>
+    <div id="wrapper">
+
+    </div>
+</body>
+</html>

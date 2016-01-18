@@ -1,0 +1,162 @@
+@import "foundation.css";
+@import "font-awesome.css";
+
+div#wrapper {
+    width: 100%;
+    min-height: 100%;
+    z-index: 2;
+    position: relative;
+}
+
+.desktop-list-inner{
+    width: 100%;
+    height: 700px;
+}
+
+.one-row {
+    height: 100%;
+    background: #232323;
+    border: 1px solid #ffffff;
+}
+
+.two-row {
+    height: 50%;
+    background: #232323;
+    border: 1px solid #ffffff;
+}
+
+.three-row {
+    height: 33.333333333%;
+    background: #232323;
+    border: 1px solid #ffffff;
+}
+
+.item-desktop {
+    width: 100%;
+    height: 100%;
+    padding: 30px;
+}
+
+.item-desktop > .clearfix {
+    width: 100%;
+    height: 100%;
+}
+
+.item-desktop .small-6, .item-desktop .small-4, .template-item .small-6, .template-item .small-4{
+    padding: 0;
+    height: 100%;
+}
+
+.pagination.small-centered{
+    text-align: center;
+}
+
+.wrap-template-item{
+    width: 200px;
+    height: 200px;
+    display: inline-block;
+    margin: 30px;
+    position: relative;
+}
+
+.template-item {
+    width: 200px;
+    height: 200px;
+}
+
+.template-item > .clearfix{
+    width:100%;
+    height:100%;
+}
+
+.hover-clicker{
+    position: absolute;
+    display: none;
+    top: 0;
+    text-align: center;
+    color: #ffffff;
+    width: 100%;
+    height: 100%;
+    background: rgba(35, 35, 35, 0.88);
+    font-size: 48px;
+    padding-top: 62px;
+}
+
+.wrap-template-item:hover .hover-clicker{
+    display: block;
+    cursor:pointer;
+}
+
+.wrap-widget-item:hover .hover-clicker{
+    display: block;
+    cursor:pointer;
+}
+
+.wrapper-widget{
+
+}
+
+.wrap-widget-item{
+    width: 300px;
+    display: inline-block;
+    margin:15px;
+    position: relative;
+}
+
+.wrap-widget-item img{
+    width:100%;
+}
+
+.wrapper-widget {
+    overflow: hidden;
+    height: 100%;
+}
+
+
+::-webkit-scrollbar {
+    width: 1px;
+    height: 7px;
+}
+
+::-webkit-scrollbar-track {
+    background: #eee;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ccc;
+}
+
+.layout-background_image_sim {
+    background-image: url(../images/bg.jpg);
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+}
+
+li.item-menu_sim {
+    display: inline-block;
+    margin: 7px;
+}
+
+.brand_sim a{
+    font-size: 40px;
+    font-family: Verdana;
+    font-weight: 200;
+    text-transform: uppercase;
+    color: #ffffff;
+}
+
+.account_sim {
+    margin-top: 7px;
+    text-align: right;
+    padding-right: 7%;
+}
+
+.account_sim a {
+    color: #ffffff;
+    font-size: 21px;
+}
